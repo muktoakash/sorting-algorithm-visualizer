@@ -48,3 +48,21 @@ def generate_starting_list(n, min_val, max_val):
         lst.append(val)
 
     return lst
+
+def main():
+    run = True
+    clock = pygame.time.Clock()
+
+    while run:
+        clock.tick(60)
+
+        pygame.display.update()
+
+        for event in pygame.event.get():
+            if event == pygame.QUIT:
+                run = False
+
+    pygame.quit()
+
+if __name__== "__main__":
+    main()
