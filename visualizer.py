@@ -17,14 +17,13 @@ class DrawInformation:
     SIDE_PAD = 100
     TOP_PAD = 150
 
-    def __init__(self, width, height, list):
+    def __init__(self, width, height, lst):
         """constructor that takes in the starting list lst for storage"""
         self.width = width
         self.height = height
 
         # global attribute:Window
-        self.window = pygame.display.set_mode
-        ((width, height))
+        self.window = pygame.display.set_mode((width, height))
 
         pygame.display.set_caption("Sorting Algorithm Visualizer")
         self.set_list(lst)
@@ -36,8 +35,7 @@ class DrawInformation:
         self.max_val = max(lst)
 
         self.block_width = round((self.width - self.SIDE_PAD) / len(lst))
-        self.block_height = round((self.height - self.TOP_PAD)
-                                  / (self.max_val - self.min_val))
+        self.block_height = round((self.height - self.TOP_PAD) / (self.max_val - self.min_val))
         self.start_x= self.SIDE_PAD // 2
 
 def generate_starting_list(n, min_val, max_val):
@@ -53,13 +51,21 @@ def main():
     run = True
     clock = pygame.time.Clock()
 
+    n = 50
+    min_val = 0
+    max_val = 100
+
+    lst = generate_starting_list(n, min_val, max_val)
+
+    draw_info = DrawInformation(800, 600, lst)
+
     while run:
         clock.tick(60)
 
         pygame.display.update()
 
         for event in pygame.event.get():
-            if event == pygame.QUIT:
+            if event.type == pygame.QUIT:
                 run = False
 
     pygame.quit()
