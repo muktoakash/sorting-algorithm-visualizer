@@ -60,14 +60,17 @@ def generate_starting_list(n, min_val, max_val):
 
     return lst
 
-def draw(draw_info):
+def draw(draw_info, algo_name, ascending):
     draw_info.window.fill(draw_info.BACKGROUND_COLOUR)
 
+    title = draw_info.LARGE_FONT.render(f"{algo_name} - {'Ascending' if ascending else 'Descending'}",  1, draw_info.GREEN)
+    draw_info.window.blit(title, (draw_info.width / 2 - title.get_width()/2,5))
+
     controls = draw_info.FONT.render("R - Reset | SPACE - Sort | A - Ascending | D - Descending", 1, draw_info.BLACK)
-    draw_info.window.blit(controls, (draw_info.width / 2 - controls.get_width()/2,5))
+    draw_info.window.blit(controls, (draw_info.width / 2 - controls.get_width()/2,35))
 
     sorting = draw_info.FONT.render("I - Insertion Sort | B - Bubble Sort", 1, draw_info.BLACK)
-    draw_info.window.blit(sorting, (draw_info.width / 2 - sorting.get_width()/2,35))
+    draw_info.window.blit(sorting, (draw_info.width / 2 - sorting.get_width()/2,65))
 
     draw_list(draw_info)
     pygame.display.update()
@@ -95,14 +98,14 @@ def draw_list(draw_info, color_positions={}, clear_bg = False):
         pygame.display.update()
 
 # major change
-def draw_sort(sorting_algorithm, draw_info, ascending):
+def draw_sort(sorting_algorithm, draw_info, ascending, algo_name):
 
     try:
         j = next(sorting_algorithm(draw_info, ascending))
         draw_list(draw_info, {j: draw_info.GREEN, j + 1:
                               draw_info.RED}, True)
     except StopIteration:
-        draw(draw_info)
+        draw(draw_info, algo_name, ascending)
         return False
 
     return True
@@ -136,9 +139,9 @@ def main():
             #     next(sorting_algorithm_generator)
             # except StopIteration:
             #     sorting = False
-            sorting = draw_sort(sorting_algorithm, draw_info, ascending)
+            sorting = draw_sort(sorting_algorithm, draw_info, ascending, sorting_algo_name)
         else:
-            draw(draw_info)
+            draw(draw_info, sorting_algo_name, ascending)
 
         pygame.display.update()
 
