@@ -1,5 +1,6 @@
 import pygame
 import random
+import math
 
 from bubble_sort import bubble_sort
 
@@ -47,7 +48,7 @@ class DrawInformation:
         self.max_val = max(lst)
 
         self.block_width = round((self.width - self.SIDE_PAD) / len(lst))
-        self.block_height = round((self.height - self.TOP_PAD) / (self.max_val - self.min_val))
+        self.block_height = math.floor((self.height - self.TOP_PAD) / (self.max_val - self.min_val))
         self.start_x= self.SIDE_PAD // 2
 
 def generate_starting_list(n, min_val, max_val):
