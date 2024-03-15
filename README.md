@@ -19,7 +19,7 @@ The objective is to learn pygame, specially on creating animations using pygame.
 <a id="pygame-setting-up"></a>
 ### Setting up
 The program generates a random list. The members of the list are then visualized using a pygame window.
-![Visualization of the Initial list](./assets/visualize_initial_list.png)
+![Visualization of the Initial list](./Tim/assets/visualize_initial_list.png)
 
 <a id="pygame-classes"></a>
 ### Classes:
@@ -31,3 +31,4 @@ The program generates a random list. The members of the list are then visualized
 
 <a id="pygame-files"></a>
 ### Files:
+[Files used in this part](./Tim/Tim_files.txt)
