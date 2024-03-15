@@ -21,6 +21,7 @@ The objective is to learn pygame, specially on creating animations using pygame.
 The program generates a random list. The members of the list are then visualized using a pygame window.
 ![Visualization of the Initial list](./Pygame/assets/visualize_initial_list.png)
 
+
 <a id="pygame-classes"></a>
 ### Classes:
 - DrawInformation : sets up initial pygame window for drawing the bars.
