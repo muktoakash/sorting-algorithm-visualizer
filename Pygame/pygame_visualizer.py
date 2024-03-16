@@ -1,10 +1,13 @@
+# ./Pygame/pygame_visualizer.py
 import pygame
 import random
 import math
 
+# import sorting algorithms
 from bubble_sort import bubble_sort
 from insertion_sort import insertion_sort
 
+# initialize pygame
 pygame.init()
 
 # Global Class
@@ -25,9 +28,11 @@ class DrawInformation:
         (192, 192, 192)
     ]
 
-    FONT = pygame.font.SysFont('comicsans', 12)
-    LARGE_FONT = pygame.font.SysFont('comicsans', 20)
+    #fonts
+    FONT = pygame.font.SysFont('arial', 12)
+    LARGE_FONT = pygame.font.SysFont('arial', 20)
 
+    #padding
     SIDE_PAD = 100
     TOP_PAD = 150
 
@@ -48,11 +53,17 @@ class DrawInformation:
         self.min_val = min(lst)
         self.max_val = max(lst)
 
+        # set up unit width and height
         self.block_width = round((self.width - self.SIDE_PAD) / len(lst))
         self.block_height = math.floor((self.height - self.TOP_PAD) / (self.max_val - self.min_val))
+
+        # starting point in the horizontal axis
         self.start_x= self.SIDE_PAD // 2
 
 def generate_starting_list(n, min_val, max_val):
+    """
+    generates a random list of n numbers from min_val to max_val
+    """
     lst = []
 
     for _ in range(n):
@@ -62,28 +73,42 @@ def generate_starting_list(n, min_val, max_val):
     return lst
 
 def draw(draw_info, algo_name, ascending):
+    """
+    Draws the frame for visualizing the list at a given time
+    """
+
+    # clear the background
     draw_info.window.fill(draw_info.BACKGROUND_COLOUR)
 
+    # generate  title info
     title = draw_info.LARGE_FONT.render(f"{algo_name} - {'Ascending' if ascending else 'Descending'}",  1, draw_info.GREEN)
+    # display title info
     draw_info.window.blit(title, (draw_info.width / 2 - title.get_width()/2,5))
 
+    # generate controls info
     controls = draw_info.FONT.render("R - Reset | SPACE - Sort | A - Ascending | D - Descending", 1, draw_info.BLACK)
+    # display controls
     draw_info.window.blit(controls, (draw_info.width / 2 - controls.get_width()/2,35))
 
+    # genarate sorting options
     sorting = draw_info.FONT.render("I - Insertion Sort | B - Bubble Sort", 1, draw_info.BLACK)
+    # display sorting options
     draw_info.window.blit(sorting, (draw_info.width / 2 - sorting.get_width()/2,65))
 
     draw_list(draw_info)
     pygame.display.update()
 
 def draw_list(draw_info, color_positions={}, clear_bg = False):
+    """display the current list at a given iteration of sorting"""
     lst = draw_info.lst
 
+    # initailizing the frame for the first iteration
     if clear_bg:
         clear_rect = (draw_info.SIDE_PAD // 2, draw_info.TOP_PAD, draw_info.width - draw_info.SIDE_PAD, draw_info.height - draw_info.TOP_PAD)
 
         pygame.draw.rect(draw_info.window, draw_info.BACKGROUND_COLOUR, clear_rect)
 
+    # working through drawing the list
     for i, val in enumerate(lst):
         x = draw_info.start_x + i * draw_info.block_width
         y = draw_info.height - (val - draw_info.min_val) * draw_info.block_height
@@ -100,11 +125,14 @@ def draw_list(draw_info, color_positions={}, clear_bg = False):
 
 # major change
 def draw_sort(sorting_algorithm, draw_info, ascending, algo_name):
+    """visualize the sorting by drawing blocks affected by sorting"""
 
+    # try sorting to the next iteration
     try:
         j = next(sorting_algorithm(draw_info, ascending))
         draw_list(draw_info, {j: draw_info.GREEN, j + 1:
                               draw_info.RED}, True)
+    # stop once completely sorted
     except StopIteration:
         draw(draw_info, algo_name, ascending)
         return False
@@ -113,21 +141,23 @@ def draw_sort(sorting_algorithm, draw_info, ascending, algo_name):
 
 
 def main():
+    """driver for the visualizer"""
     run = True
     clock = pygame.time.Clock()
 
+    # setting up a demo list
     n = 50
     min_val = 0
     max_val = 100
 
     lst = generate_starting_list(n, min_val, max_val)
 
+    # intial list visualized
     draw_info = DrawInformation(800, 600, lst)
 
+    # set parameters
     sorting = False
-
     ascending = True
-
     sorting_algorithm = bubble_sort
     sorting_algo_name = "Bubble Sort"
     # sorting_algorithm_generator = draw_sort(sorting_algorithm, draw_info, ascending)
@@ -146,6 +176,7 @@ def main():
 
         pygame.display.update()
 
+        # listen to the key-press
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 run = False
