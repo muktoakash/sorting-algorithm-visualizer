@@ -123,7 +123,6 @@ def draw_list(draw_info, color_positions={}, clear_bg = False):
     if clear_bg:
         pygame.display.update()
 
-# major change
 def draw_sort(sorting_algorithm, draw_info, ascending, algo_name):
     """visualize the sorting by drawing blocks affected by sorting"""
 
@@ -160,16 +159,11 @@ def main():
     ascending = True
     sorting_algorithm = bubble_sort
     sorting_algo_name = "Bubble Sort"
-    # sorting_algorithm_generator = draw_sort(sorting_algorithm, draw_info, ascending)
 
     while run:
         clock.tick(60)
 
-        if sorting: # major change
-            # try:
-            #     next(sorting_algorithm_generator)
-            # except StopIteration:
-            #     sorting = False
+        if sorting:
             sorting = draw_sort(sorting_algorithm, draw_info, ascending, sorting_algo_name)
         else:
             draw(draw_info, sorting_algo_name, ascending)
@@ -189,7 +183,6 @@ def main():
                 sorting = False
             elif event.key == pygame.K_SPACE and sorting == False:
                 sorting = True
-                # sorting_algorithm_generator = draw_sort(sorting_algorithm, draw_info, ascending)
             elif event.key == pygame.K_a and sorting == False:
                 ascending = True
             elif event.key == pygame.K_d and sorting == False:
