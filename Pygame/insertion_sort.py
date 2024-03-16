@@ -1,4 +1,6 @@
+"""implements insertion sort"""
 def insertion_sort(draw_info, ascending = True):
+    """sorts given list using insertion sort"""
     lst = draw_info.lst
 
     for i in range(1, len(lst)):
@@ -16,6 +18,7 @@ def insertion_sort(draw_info, ascending = True):
             yield i-1
 
 def main():
+    """driver"""
     print("Implements insertion sort.")
 
 if __name__ == "__main__":

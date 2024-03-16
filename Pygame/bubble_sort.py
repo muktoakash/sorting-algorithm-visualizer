@@ -1,4 +1,6 @@
+"""Implements bubble sort"""
 def bubble_sort(draw_info, ascending = True):
+    """takes information to use bubble sort on list"""
     lst = draw_info.lst
 
     for i in range(len(lst) - 1):
@@ -11,6 +13,7 @@ def bubble_sort(draw_info, ascending = True):
                 yield j
 
 def main():
+    """driver"""
     print("Implements bubble sort.")
 
 if __name__ == "__main__":

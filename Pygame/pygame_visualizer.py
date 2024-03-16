@@ -1,7 +1,8 @@
-# ./Pygame/pygame_visualizer.py
-import pygame
+""" ./Pygame/pygame_visualizer.py """
 import random
 import math
+import pygame
+
 
 # import sorting algorithms
 from bubble_sort import bubble_sort
@@ -81,12 +82,18 @@ def draw(draw_info, algo_name, ascending):
     draw_info.window.fill(draw_info.BACKGROUND_COLOUR)
 
     # generate  title info
-    title = draw_info.LARGE_FONT.render(f"{algo_name} - {'Ascending' if ascending else 'Descending'}",  1, draw_info.GREEN)
+    title = draw_info.LARGE_FONT.render(
+        f"{algo_name} - {'Ascending' if ascending else 'Descending'}",
+        1, draw_info.GREEN)
     # display title info
-    draw_info.window.blit(title, (draw_info.width / 2 - title.get_width()/2,5))
+    draw_info.window.blit(title,
+                          (draw_info.width / 2 - title.get_width()
+                           /2,5))
 
     # generate controls info
-    controls = draw_info.FONT.render("R - Reset | SPACE - Sort | A - Ascending | D - Descending", 1, draw_info.BLACK)
+    controls = draw_info.FONT.render(
+        "R - Reset | SPACE - Sort | A - Ascending | D - Descending",
+        1, draw_info.BLACK)
     # display controls
     draw_info.window.blit(controls, (draw_info.width / 2 - controls.get_width()/2,35))
 
@@ -99,14 +106,20 @@ def draw(draw_info, algo_name, ascending):
     pygame.display.update()
 
 def draw_list(draw_info, color_positions={}, clear_bg = False):
-    """display the current list at a given iteration of sorting"""
+    """
+    display the current list at a given
+    iteration of sorting
+    """
     lst = draw_info.lst
 
     # initailizing the frame for the first iteration
     if clear_bg:
-        clear_rect = (draw_info.SIDE_PAD // 2, draw_info.TOP_PAD, draw_info.width - draw_info.SIDE_PAD, draw_info.height - draw_info.TOP_PAD)
+        clear_rect = (draw_info.SIDE_PAD // 2, draw_info.TOP_PAD,
+                      draw_info.width - draw_info.SIDE_PAD,
+                      draw_info.height - draw_info.TOP_PAD)
 
-        pygame.draw.rect(draw_info.window, draw_info.BACKGROUND_COLOUR, clear_rect)
+        pygame.draw.rect(draw_info.window,
+                         draw_info.BACKGROUND_COLOUR, clear_rect)
 
     # working through drawing the list
     for i, val in enumerate(lst):
@@ -181,16 +194,16 @@ def main():
                 lst = generate_starting_list(n, min_val, max_val)
                 draw_info.set_list(lst)
                 sorting = False
-            elif event.key == pygame.K_SPACE and sorting == False:
+            elif event.key == pygame.K_SPACE and sorting is False:
                 sorting = True
-            elif event.key == pygame.K_a and sorting == False:
+            elif event.key == pygame.K_a and sorting is False:
                 ascending = True
-            elif event.key == pygame.K_d and sorting == False:
+            elif event.key == pygame.K_d and sorting is False:
                 ascending = False
-            elif event.key == pygame.K_i and sorting == False:
+            elif event.key == pygame.K_i and sorting is False:
                 sorting_algorithm = insertion_sort
                 sorting_algo_name = "Insertion Sort"
-            elif event.key == pygame.K_b and sorting == False:
+            elif event.key == pygame.K_b and sorting is False:
                 sorting_algorithm = bubble_sort
                 sorting_algo_name = "Bubble Sort"
 
