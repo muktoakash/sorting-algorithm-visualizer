@@ -32,4 +32,4 @@ The program generates a random list. The members of the list are then visualized
 
 <a id="pygame-files"></a>
 ### Files:
-[Files used in this part](./Pygame/pygame_files.txt)
+[Files used in this part](./Pygame/pygame_files.md)
