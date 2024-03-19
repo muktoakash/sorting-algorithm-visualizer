@@ -36,4 +36,4 @@ Once the entire list is sorted, the final list is seen to be in ascending or des
 
 <a id="pygame-files"></a>
 ### Files:
-[Files used in this part](./Pygame/pygame_files.txt)
+[Files used in this part](./Pygame/pygame_files.md)
