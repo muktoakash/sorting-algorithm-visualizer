@@ -21,9 +21,9 @@ The objective is to learn pygame, specially on creating animations using pygame.
 The program generates a random list. The members of the list are then visualized using a pygame window.
 ![Visualization of the Initial list](./Pygame/assets/visualize_initial_list_with_title.png)
 The user would then select the sorting algorithm to visualize, as well as whether to sort in an ascending or descending order. The sorting is then animated on the screen, with colors used to indicate list members being swapped for sorting.
-[Snapshot of sorting visualization](./Pygame/assets/visualize_while_sorting.png)
+![Snapshot of sorting visualization](./Pygame/assets/visualize_while_sorting.png)
 Once the entire list is sorted, the final list is seen to be in ascending or descending order as chosed earlier by the user.
-[Visualization of Sorted List](./Pygame/assets/visualize_sorted_list.png)
+![Visualization of Sorted List](./Pygame/assets/visualize_sorted_list.png)
 
 
 <a id="pygame-classes"></a>
