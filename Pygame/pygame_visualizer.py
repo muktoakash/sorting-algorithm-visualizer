@@ -105,12 +105,15 @@ def draw(draw_info, algo_name, ascending):
     draw_list(draw_info)
     pygame.display.update()
 
-def draw_list(draw_info, color_positions={}, clear_bg = False):
+def draw_list(draw_info, color_positions=None, clear_bg = False):
     """
     display the current list at a given
     iteration of sorting
     """
     lst = draw_info.lst
+
+    if not color_positions:
+        color_positions = dict()
 
     # initailizing the frame for the first iteration
     if clear_bg:
